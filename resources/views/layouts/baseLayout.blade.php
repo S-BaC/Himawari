@@ -8,5 +8,8 @@
 </head>
 <body>
     @yield('dashboard')
+    @yield('details')
+    @yield('finances')
+    @yield('settings')
 </body>
 </html>

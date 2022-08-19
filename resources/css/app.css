@@ -36,4 +36,7 @@ body{
     .stat-bar {
         @apply col-span-5 w-full rounded-lg grid grid-cols-3 items-center pl-14;
     }
+    .details-ele {
+        @apply row-span-3 rounded-lg self-center justify-center p-5 cursor-pointer hover:bg-orange-700;
+    }
 }

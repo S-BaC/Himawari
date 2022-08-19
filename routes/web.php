@@ -17,8 +17,16 @@ Route::get('/', function() {
     return view('dashboard');
 });
 
-Route::get('/s', function() {
-    return view('layouts.baseLayout');
+Route::get('/details', function() {
+    return view('details');
+});
+
+Route::get('/finances', function() {
+    return view('finances');
+});
+
+Route::get('/settings', function() {
+    return view('settings');
 });
 
 
