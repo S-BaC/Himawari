@@ -5,6 +5,7 @@
 
 <div class="dashboard mx-10">
     @include('graphs')
+    {{-- {{$data['totalRooms']}} --}}
     @include('stats')
 </div>
 

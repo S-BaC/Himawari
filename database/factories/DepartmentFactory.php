@@ -17,8 +17,7 @@ class DepartmentFactory extends Factory
     public function definition()
     {
         return [
-            'id' => fake()->unique()->numberBetween(1,5),
-            'name' => fake()->randomElement(['Neurology', 'Dermatology', 'General', 'Cardiology', 'Orthopedics']),
+            'name' => fake()->unique()->randomElement(['Neurology', 'Dermatology', 'General', 'Cardiology', 'Orthopedics']),
             'total_staff' => fake()->numberBetween(10,100)
         ];
     }

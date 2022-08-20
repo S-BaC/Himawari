@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\AppointmentController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DetailsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,13 +16,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function() {
-    return view('dashboard');
-});
+Route::get('/', [DashboardController::class, 'index']);
 
-Route::get('/details', function() {
-    return view('details');
-});
+Route::get('/details', [DetailsController::class, 'index']);
 
 Route::get('/finances', function() {
     return view('finances');
@@ -28,5 +27,11 @@ Route::get('/finances', function() {
 Route::get('/settings', function() {
     return view('settings');
 });
+
+Route::post('/appointments/add', [AppointmentController::class, 'store']);
+
+Route::post('/appointments/edit', [AppointmentController::class, 'edit']);
+
+Route::post('/appointments/destroy', [AppointmentController::class, 'destroy']);
 
 

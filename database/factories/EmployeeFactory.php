@@ -17,7 +17,6 @@ class EmployeeFactory extends Factory
     public function definition()
     {
         return [
-            'id' => fake()->unique()->numberBetween(1,30),
             'name' => fake()->name(),
             'gender' => fake()->numberBetween(1,3),
             'email' => fake()->unique()->email(),

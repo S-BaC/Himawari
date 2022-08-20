@@ -29,6 +29,7 @@ return new class extends Migration
             $table->integer('experience');
             $table->integer('age');
             $table->string('cv')->nullable();
+            $table->string('picture')->nullable();
             $table->timestamps();
         });
 
@@ -43,6 +44,7 @@ return new class extends Migration
             $table->string('city');
             $table->json('appointments')->nullable();
             $table->decimal('total_spending')->nullable();
+            $table->string('picture')->nullable();
             $table->timestamps();
         });
 
@@ -119,7 +121,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('cash_in', function (Blueprint $table) {
+        Schema::create('cashin', function (Blueprint $table) {
             $table->id();
             $table->date('date_time');
             $table->string('category');
@@ -150,6 +152,18 @@ return new class extends Migration
             $table->string('details');
             $table->string('manufacturer');
             $table->decimal('average_price');
+            $table->timestamps();
+        });
+
+        Schema::create('messages', function (Blueprint $table) {
+            $table->id();
+            $table->string('sender_name');
+            $table->unsignedBigInteger('sender_id')->nullable();
+            //$table->foreign('current_patient')->references('id')->on('patients');
+            $table->dateTime('date_time');
+            $table->string('title');
+            $table->string('content');
+           
             $table->timestamps();
         });
     }

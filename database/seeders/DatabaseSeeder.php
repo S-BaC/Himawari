@@ -22,16 +22,17 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        // \App\Models\Department::factory(5)->create();
-        // \App\Models\Role::factory(10)->create();
-        // \App\Models\Employee::factory(30)->create();
-        // \App\Models\Patient::factory(30)->create();
-        // \App\Models\Room::factory(30)->create();
-        \App\Models\Assignment::factory(30)->create(); //TODO
-        // \App\Models\CashIn::factory(10)->create();
-        // \App\Models\Appointment::factory(10)->create();
-        // \App\Models\Product::factory(30)->create();
-        \App\Models\CurrentStock::factory(30)->create();
+        \App\Models\Department::factory(5)->create();
+        \App\Models\Role::factory(5)->create();
+        \App\Models\Employee::factory(30)->create();
+        \App\Models\Patient::factory(30)->create();
+        \App\Models\Room::factory(30)->create();
+        \App\Models\Assignment::factory(30)->create();
+        \App\Models\CashIn::factory(10)->create();
+        \App\Models\Appointment::factory(10)->create();
+        \App\Models\Product::factory(30)->create();
+        \App\Models\CurrentStock::factory(10)->create();
+        \App\Models\Message::factory(10)->create();
 
         // \App\Models\Employee::factory()->create([
         //     'name' => 'Test User',

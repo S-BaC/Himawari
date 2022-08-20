@@ -21,9 +21,9 @@ class AppointmentFactory extends Factory
             'expected_minutes' => fake()->numberBetween(10,60),
             'duration_minutes' => fake()->numberBetween(10,60),
             'description' => fake() -> text(150),
-            'doctor' => fake() -> numberBetween(1,30),
-            'patient' => fake() -> numberBetween(1,10),
-            'department' => fake() -> numberBetween(1,5),
+            'doctor' => fake() ->  numberBetween(1,30),
+            'patient' => fake() ->  numberBetween(1,30),
+            'department' => fake() ->  numberBetween(1,5),
             'bill' => fake() -> numberBetween(1,10),
         ];
     }

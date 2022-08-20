@@ -17,7 +17,7 @@ class RoleFactory extends Factory
     public function definition()
     {
         return [
-            'name' => fake()->randomElement(['Specialist', 'Fellow', 'Intern', 'Nurse', 'Office Staff']),
+            'name' => fake()->unique()->randomElement(['Specialist', 'Fellow', 'Intern', 'Nurse', 'Office Staff']),
             'total_staff' => fake() -> numberBetween(10,100),
         ];
     }

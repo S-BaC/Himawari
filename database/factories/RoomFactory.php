@@ -17,13 +17,13 @@ class RoomFactory extends Factory
     public function definition()
     {
         return [
-            'name' => fake()->number_format("###"),
+            'name' => "R" . fake()->numerify("###"),
             'beds' => fake()->numberBetween(1,10),
             'width' => fake() -> randomElement([100,150,200]),
             'length' => fake() -> randomElement([100,150,200]),
             'condition' => fake() -> numberBetween(1,5),
-            'is_vacant' => 'true',
-            'staff' => fake() -> numberBetween(1,10)
+            'is_vacant' => true,
+            'staff' => fake() -> numberBetween(1,30)
         ];
     }
 }

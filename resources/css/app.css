@@ -14,6 +14,10 @@ body{
     border-bottom: 3px solid #EC7F24;
 }
 
+.selected-details {
+    background-color: #EBEBEB !important;
+}
+
 .stat-bar-ele span{
     font-size: 1.5rem;
     font-weight: 600;
@@ -31,6 +35,7 @@ body{
 .bg-special-02{ color:#fff; background-color: #43AA8B;}
 .bg-special-03{ color:#fff; background-color: #8E5572;}
 .bg-special-04{ color:#fff; background-color: #7D82B8;}
+.bg-special-05{  background-color: #EBEBEB;}
 
 @layer components {
     .stat-bar {
@@ -38,5 +43,8 @@ body{
     }
     .details-ele {
         @apply row-span-3 rounded-lg self-center justify-center p-5 cursor-pointer hover:bg-orange-700;
+    }
+    .selected-details {
+        @apply border-solid border-2 border-orange-500;
     }
 }

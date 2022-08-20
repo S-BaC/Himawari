@@ -19,7 +19,7 @@ class CurrentStockFactory extends Factory
         return [
             'product_name'=>fake()->text(5),
             'product_category'=>fake()->randomElement(['pharmaceuticals', 'equipments', 'office_supplies', 'others']),
-            'product_details'=>fake()->numberBetween(1,10),
+            'product_details'=>fake()->unique()->numberBetween(1,10),
             'quantities'=>fake()->numberBetween(1,1000),
             'unit'=> 'units',
             'near_expiration'=>fake()->boolean(),
