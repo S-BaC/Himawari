@@ -19,16 +19,16 @@ return new class extends Migration
             $table->integer('gender');
             $table->string('email')->unique()->nullable();
             $table->string('phone');
-            $table->float('department_id');
+            $table->unsignedBigInteger('department_id');
             //$table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
-            $table->float('role_id');
+            $table->unsignedBigInteger('role_id');
             //$table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
             $table->datetime('date_of_birth');
             $table->datetime('start_of_employment');
             $table->datetime('end_of_employment')->nullable();
             $table->integer('experience');
             $table->integer('age');
-            $table->datetime('cv')->nullable();
+            $table->string('cv')->nullable();
             $table->timestamps();
         });
 
@@ -41,7 +41,7 @@ return new class extends Migration
             $table->datetime('date_of_birth');
             $table->integer('age');
             $table->string('city');
-            $table->json('appointments');
+            $table->json('appointments')->nullable();
             $table->decimal('total_spending')->nullable();
             $table->timestamps();
         });
@@ -57,7 +57,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->integer('total_staff');
-            $table->float('head')->nullable();
+            $table->unsignedBigInteger('head')->nullable();
             //$table->foreign('head')->references('id')->on('employees');
             $table->timestamps();
         });
@@ -70,9 +70,9 @@ return new class extends Migration
             $table->integer('length');
             $table->integer('condition');
             $table->boolean('is_vacant');
-            $table->float('current_patient')->nullable();
+            $table->unsignedBigInteger('current_patient')->nullable();
             //$table->foreign('current_patient')->references('id')->on('patients');
-            $table->float('staff')->nullable();
+            $table->unsignedBigInteger('staff')->nullable();
             //$table->foreign('staff')->references('id')->on('employees');
             $table->timestamps();
         });
@@ -80,11 +80,11 @@ return new class extends Migration
         Schema::create('assignments', function (Blueprint $table) {
             $table->id();
             $table->date('date_time');
-            $table->float('cleaning_staff')->nullable();
+            $table->unsignedBigInteger('cleaning_staff')->nullable();
             //$table->foreign('cleaning_staff')->references('id')->on('employees');
-            $table->float('nurse_1')->nullable();
+            $table->unsignedBigInteger('nurse_1')->nullable();
             //$table->foreign('nurse_1')->references('id')->on('employees');
-            $table->float('nurse_2')->nullable();
+            $table->unsignedBigInteger('nurse_2')->nullable();
             //$table->foreign('nurse_2')->references('id')->on('employees');
             $table->timestamps();
         });
@@ -93,11 +93,11 @@ return new class extends Migration
             $table->id();
             $table->date('start_date');
             $table->date('end_date')->nullable();
-            $table->float('patient')->nullable();
+            $table->unsignedBigInteger('patient')->nullable();
             //$table->foreign('patient')->references('id')->on('patients');
-            $table->float('department')->nullable();
+            $table->unsignedBigInteger('department')->nullable();
             //$table->foreign('department')->references('id')->on('departments');
-            $table->float('bill')->nullable();
+            $table->unsignedBigInteger('bill')->nullable();
             //$table->foreign('bill')->references('id')->on('cash_in');
             $table->timestamps();
         });
@@ -108,13 +108,13 @@ return new class extends Migration
             $table->integer('expected_minutes');
             $table->integer('duration_minutes')->nullable();
             $table->string('description')->nullable();
-            $table->float('doctor')->nullable();
+            $table->unsignedBigInteger('doctor')->nullable();
             //$table->foreign('doctor')->references('id')->on('employees');
-            $table->float('patient')->nullable();
+            $table->unsignedBigInteger('patient')->nullable();
             //$table->foreign('patient')->references('id')->on('patients');
-            $table->float('department')->nullable();
+            $table->unsignedBigInteger('department')->nullable();
             //$table->foreign('department')->references('id')->on('departments');
-            $table->float('bill')->nullable();
+            $table->unsignedBigInteger('bill')->nullable();
             //$table->foreign('bill')->references('id')->on('cash_in');
             $table->timestamps();
         });
@@ -122,20 +122,21 @@ return new class extends Migration
         Schema::create('cash_in', function (Blueprint $table) {
             $table->id();
             $table->date('date_time');
-            $table->enum('category', ['appointment, hospitalization']);
-            $table->float('appointment_id')->nullable();
+            $table->string('category');
+            // $table->enum('category', ['appointment, hospitalization']);
+            $table->unsignedBigInteger('appointment_id')->nullable();
             //$table->foreign('appointment_id')->references('id')->on('appointments');
-            $table->float('hospitalization_id')->nullable();
+            $table->unsignedBigInteger('hospitalization_id')->nullable();
             //$table->foreign('hospitalization_id')->references('id')->on('hospitalizations');
             $table->integer('amount');
             $table->timestamps();
         });
 
-        Schema::create('current_stock', function (Blueprint $table) {
+        Schema::create('currentstock', function (Blueprint $table) {
             $table->id();
             $table->string('product_name');
             $table->enum('product_category', ['pharmaceuticals', 'equipments', 'office_supplies', 'others']);
-            $table->float('product_details')->nullable();
+            $table->unsignedBigInteger('product_details')->nullable();
             //$table->foreign('product_details')->references('id')->on('products');
             $table->integer('quantities');
             $table->string('unit');
@@ -148,7 +149,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('details');
             $table->string('manufacturer');
-            $table->string('average_price');
+            $table->decimal('average_price');
             $table->timestamps();
         });
     }
