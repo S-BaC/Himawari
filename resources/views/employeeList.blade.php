@@ -66,12 +66,13 @@
                                         <img class="w-6" src="{{URL::asset('/img/icons/info.svg')}}" alt=""/>
                                     
                                     </a>
-                                    <a href="#"
+                                    <a 
+                                        href="/employees/edit/{{$emp['id']}}"
                                         class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
                                         <img class="w-6" src="{{URL::asset('/img/icons/edit.svg')}}" alt=""/>
 
                                     </a>
-                                    <a href="#"
+                                    <a href="/employees/destroy/{{$emp['id']}}"
                                         class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
                                         <img class="w-6" src="{{URL::asset('/img/icons/delete.svg')}}" alt=""/>
 
@@ -92,11 +93,14 @@
         </div>
 
         <div id="employee-form" class="hidden ml-80 mt-3">@include('forms.employee', ['mode' => 'add'])</div>
+        {{-- <div id="employee-form-update" class="hidden ml-80 mt-3">@include('forms.employee', ['mode' => 'update', 'employees' => $employees, 'id' => currentId()])</div> --}}
+
     </div>
 
     <script>
         let empList = document.querySelector('#employee-list');
         let empForm = document.querySelector('#employee-form');
+        let empUpdate = document.querySelector('#employee-form-update');
         document.querySelector('#employee-list .add-emp').addEventListener('click', e => {
             empList.style.display = 'none';
             empForm.style.display = 'block';

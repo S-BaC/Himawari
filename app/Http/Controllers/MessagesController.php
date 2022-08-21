@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Message;
 use Illuminate\Http\Request;
 
 class MessagesController extends Controller
@@ -13,7 +14,8 @@ class MessagesController extends Controller
      */
     public function index()
     {
-        //
+        $messages = Message::paginate(5);
+        return view('messages', ['messages' => $messages]);
     }
 
     /**

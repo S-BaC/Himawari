@@ -27,9 +27,9 @@
                         <div class="edit-app">
                             <img class="w-6" src="{{URL::asset('/img/icons/edit.svg')}}" alt=""/>
                         </div>
-                        <div class="delete-app">
+                        <a href="/details/destroy/{{$app['id']}}" class="delete-app">
                             <img class="w-6" src="{{URL::asset('/img/icons/delete.svg')}}" alt=""/>
-                        </div>
+                        </a>
                     </span>
                 </li>
                 <p class="font-light italic"> 
@@ -45,22 +45,22 @@
             @endforeach
         </ul>
 
+
         <div class="w-96 m-auto my-10">
             {{$appointments->links()}}
         </div>
     </div>
+    
+    <div id="appointment-form" class="hidden ml-80 mt-6">@include('forms.appointment', ['mode' => 'add'])</div>
+    
 </div>
 
 <script>
-    let content = document.querySelector('#appointment-details');
+    let main = document.querySelector('#appointment-details'); 
+    let form = document.querySelector('#appointment-form'); 
     document.querySelector('#appointment-details .add-app').addEventListener('click', e => {
-        content.innerHTML =  `<div id="appointment-form">@include('forms.appointment', ['mode' => 'add'])</div>`;
-    });
-    document.querySelector('#appointment-details .edit-app').addEventListener('click', e => {
-        content.innerHTML =  `<div id="appointment-form">@include('forms.appointment', ['mode' => 'edit'])</div>`;
-    });
-    document.querySelector('#appointment-details .delete-app').addEventListener('click', e => {
-        content.innerHTML =  `<div id="appointment-form">@include('forms.appointment', ['mode' => 'delete'])</div>`;
+        main.style.display = 'none';
+        form.style.display = 'block';
     });
 </script>
 

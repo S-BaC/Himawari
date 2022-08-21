@@ -1,6 +1,13 @@
+@extends('layouts.baseLayout')
 
+@section('employees_edit')
+    @include('navbar', ['selectedTab' => 'n-details'])
 
-<form class="w-2/3 m-auto" method="POST" action="/employees/{{$mode}}">
+    <div class="mx-10 mt-6 ml-80">
+
+        @include('detailsNav', ['selectedDetails' => 'd-employees'])
+
+<form class="w-2/3 m-auto" method="POST" action="/employees/update/{{$id}}">
 
   @csrf
 
@@ -8,7 +15,7 @@
         <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Name</label>
         <input type="text" id="name" name="name"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-300 focus:border-orange-300 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-300 dark:focus:border-orange-300"
-            placeholder="John Doe" value={{}} required>
+            placeholder="John Doe" value={{$employee['name']}} required>
     </div>
 
     <div class="mb-6">
@@ -34,13 +41,13 @@
         </div>
         <input id="birthday" datepicker="" type="text" name="date_of_birth"
             class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-orange-300 focus:border-orange-300 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-300 dark:focus:border-orange-300 datepicker-input"
-            placeholder="Please Choose Birthday" required>
+            placeholder="Please Choose Birthday" value={{$employee['date_of_birth']}} required>
     </div>
 
     <div class="mb-6">
         <label for="gender" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Gender</label>
         <select id="gender" name="gender"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-300 focus:border-orange-300 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-300 dark:focus:border-orange-300">
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-300 focus:border-orange-300 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-300 dark:focus:border-orange-300" value={{$employee['gender']}}>
             <option selected="">Choose Gender</option>
             <option value="1">Male</option>
             <option value="2">Female</option>
@@ -65,19 +72,19 @@
         <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Email</label>
         <input type="email" id="email" name="email"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-300 focus:border-orange-300 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-300 dark:focus:border-orange-300"
-            placeholder="name@himawari.com" required>
+            placeholder="name@himawari.com" value={{$employee['email']}} required>
     </div>
     <div class="mb-6">
         <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Phone No.</label>
         <input type="text" id="phone" name="phone"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-300 focus:border-orange-300 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-300 dark:focus:border-orange-300"
-            placeholder="+1234567890" required>
+            placeholder="+1234567890" value={{$employee['phone']}} required>
     </div>
     <div class="mb-6">
         <label for="department"
             class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Department</label>
         <select id="department" name="department"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-300 focus:border-orange-300 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-300 dark:focus:border-orange-300">
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-300 focus:border-orange-300 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-300 dark:focus:border-orange-300" value={{$employee['department']}}>
             <option selected="">Choose Department</option>
             <option value="1">Dermatology
             </option>
@@ -92,7 +99,7 @@
     <div class="mb-6">
         <label for="role" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Role</label>
         <select id="role" name="role"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-300 focus:border-orange-300 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-300 dark:focus:border-orange-300">
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-300 focus:border-orange-300 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-300 dark:focus:border-orange-300" value={{$employee['role']}}>
             <option selected="">Choose Role</option>
             <option value="1">Specialist</option>
             <option value="2">Nurse</option>
@@ -116,7 +123,7 @@
             </div>
             <input id="employment-start" datepicker="" type="text" name="start_of_employment"
                 class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-orange-300 focus:border-orange-300 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-300 dark:focus:border-orange-300 datepicker-input"
-                placeholder="Start of Employment" required>
+                placeholder="Start of Employment" value={{$employee['start_of_employment']}} required>
         </div>
         <p class="mx-4 text-gray-500">to</p>
         <div class="relative mb-6">
@@ -130,7 +137,7 @@
             </div>
             <input id="end_of_employment" datepicker="" type="text" name="employment-end"
                 class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-orange-300 focus:border-orange-300 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-300 dark:focus:border-orange-300 datepicker-input"
-                placeholder="End of Employment">
+                placeholder="End of Employment" value={{$employee['end_of_employment']}}/>
         </div>
     </div>
 
@@ -147,3 +154,5 @@
 </form>
 
 
+    </div>
+    @endsection

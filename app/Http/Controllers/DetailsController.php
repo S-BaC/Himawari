@@ -57,8 +57,11 @@ class DetailsController extends Controller
         ]);
 
         
-        $picture = ($request->file('picture') !== null) ? $request->file('picture')->store('employee_pictures') : null;
-        $cv = ($request->file('cv') !== null) ? $request->file('cv')->store('employee_cvs') : null;
+        // $picture = ($request->file('picture') !== null) ? $request->file('picture')->store('employee_pictures') : null;
+        // $cv = ($request->file('cv') !== null) ? $request->file('cv')->store('employee_cvs') : null;
+
+        $picture = null;
+        $cv = null;
 
         DB::table('employees')
             ->insert([
@@ -124,6 +127,7 @@ class DetailsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Appointment::find($id)->delete();
+        return redirect('/details'); 
     }
 }

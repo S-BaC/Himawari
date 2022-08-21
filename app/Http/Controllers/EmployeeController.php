@@ -19,7 +19,7 @@ class EmployeeController extends Controller
     public function index()
     {
         $employees =  Employee::paginate(5,[
-            'name', 'picture', 'role_id', 'department_id', 'age', 'phone'
+            'id', 'name', 'picture', 'role_id', 'department_id', 'age', 'phone'
         ]);
 
         for($i=0, $len=count($employees); $i<$len; $i++){
@@ -97,7 +97,14 @@ class EmployeeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $employee =  (Employee::where('id', $id)->get([
+            'id', 'name', 'picture', 'role_id', 'department_id', 'age', 'phone'
+        ]))[0];
+
+        $employee['role'] = (Role::where('id', $employee['role_id'])->get('name'))[0]['name'];
+        $employee['department'] = (Department::where('id', $employee['department_id'])->get('name'))[0]['name'];
+
+        return view('forms.employeeEdit', ['id' => $id, 'employee' => $employee]);
     }
 
     /**
@@ -109,7 +116,33 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required',
+        ]);
+
+        
+        $picture = ($request->file('picture') !== null) ? $request->file('picture')->store('employee_pictures') : null;
+        $cv = ($request->file('cv') !== null) ? $request->file('cv')->store('employee_cvs') : null;
+
+        DB::table('employees')
+            ->where('id', $id)
+            ->insert([
+                'name' => $request->name,
+                'picture' => $picture,
+                'date_of_birth' => date("Y-m-d",strtotime($request->date_of_birth)),
+                'gender' => $request->gender,
+                'cv' => $cv,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'department_id' => $request->department,
+                'role_id' => $request->role,
+                'start_of_employment' => date("Y-m-d",strtotime($request->start_of_employment)),
+                'end_of_employment' => date("Y-m-d",strtotime($request->end_of_employment)),
+                'age' => date("Y") - date("Y", strtotime($request->date_of_birth)),
+                'experience' => date("Y") - date("Y", strtotime($request->start_of_employment)),
+            ]);
+
+        return redirect('/employees');
     }
 
     /**
@@ -120,6 +153,7 @@ class EmployeeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Employee::find($id)->delete();
+        return redirect('/employees'); 
     }
 }

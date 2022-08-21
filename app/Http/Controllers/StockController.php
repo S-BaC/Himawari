@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CurrentStock;
 use Illuminate\Http\Request;
 
 class StockController extends Controller
@@ -13,7 +14,8 @@ class StockController extends Controller
      */
     public function index()
     {
-        //
+        $stocks = CurrentStock::paginate(5);
+        return view('stocks', ['stocks' => $stocks]);
     }
 
     /**

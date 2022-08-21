@@ -1,4 +1,4 @@
-<div class="flex justify-between p-5 items-center mx-10 fixed w-11/12 bg-special-05">
+<div class="flex justify-between p-5 items-center mx-10 fixed w-full pr-20 bg-special-05">
     <div class="logo h-30">
         <img class='w-auto h-20' src="{{URL::asset('/img/logo.png')}}" alt="Logo">
     </div>

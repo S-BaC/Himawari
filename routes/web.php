@@ -38,12 +38,12 @@ Route::post('/details/add', [DetailsController::class, 'store']);
 
 Route::post('/details/edit', [DetailsController::class, 'edit']);
 
-Route::post('/details/destroy', [DetailsController::class, 'destroy']);
+Route::get('/details/destroy/{id}', [DetailsController::class, 'destroy']);
 
 Route::post('/employees/add', [EmployeeController::class, 'store']);
 
-Route::post('/employees/edit', [EmployeeController::class, 'edit']);
+Route::get('/employees/edit/{id}', [EmployeeController::class, 'edit']);
 
-Route::post('/employees/destroy', [EmployeeController::class, 'destroy']);
+Route::post('/employees/update/{id}', [EmployeeController::class, 'update']);
 
-
+Route::get('/employees/destroy/{id}', [EmployeeController::class, 'destroy']);

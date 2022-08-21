@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Hospitalization;
+use App\Models\Room;
 use Illuminate\Http\Request;
 
 class ServicesController extends Controller
@@ -13,7 +15,11 @@ class ServicesController extends Controller
      */
     public function index()
     {
-        //
+        $rooms = Room::paginate();
+        $hospitalizations = Hospitalization::paginate();
+
+        return view('services', ['rooms' => $rooms, 'hospitalizations' => $hospitalizations]);
+
     }
 
     /**
