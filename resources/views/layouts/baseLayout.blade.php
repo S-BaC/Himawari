@@ -9,6 +9,7 @@
 <body>
     @yield('dashboard')
     @yield('details')
+    @yield('employees')
     @yield('finances')
     @yield('settings')
     <script src="{{URL::asset('modules/flowbite/dist/flowbite.js')}}"></script>

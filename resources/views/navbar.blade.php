@@ -12,10 +12,10 @@
             <img class="w-8 h-8" src="{{URL::asset('/img/icons/database.svg')}}" alt="icon">
             <a href="/details">Details</a>
         </div>
-        <div id="n-finances" class="nav-element flex gap-2 items-center cursor-pointer">
+        {{-- <div id="n-finances" class="nav-element flex gap-2 items-center cursor-pointer">
             <img class="w-8 h-8" src="{{URL::asset('/img/icons/yen.svg')}}" alt="icon">
             <a href="/finances">Finances</a>
-        </div>
+        </div> --}}
         <div id="n-settings" class="nav-element flex gap-2 items-center cursor-pointer">
             <img class="w-8 h-8" src="{{URL::asset('/img/icons/cog.svg')}}" alt="icon">
             <a href="/settings">Settings</a>

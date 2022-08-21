@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Department;
+use App\Models\Employee;
+use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class AppointmentController extends Controller
+
+class EmployeeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +18,18 @@ class AppointmentController extends Controller
      */
     public function index()
     {
-        //
+        $employees =  Employee::paginate(5,[
+            'name', 'picture', 'role_id', 'department_id', 'age', 'phone'
+        ]);
+
+        for($i=0, $len=count($employees); $i<$len; $i++){
+            $employees[$i]['role'] = (Role::where('id', $employees[$i]['role_id'])->get('name'))[0]['name'];
+            $employees[$i]['department'] = (Department::where('id', $employees[$i]['department_id'])->get('name'))[0]['name'];
+        }
+
+        return view('employeeList', [
+            'employees' => $employees
+        ]);
     }
 
     /**
@@ -60,9 +75,7 @@ class AppointmentController extends Controller
                 'experience' => date("Y") - date("Y", strtotime($request->start_of_employment)),
             ]);
 
-        dd("completed");
-
-        // return view('sandbox', ['data' => $new]);
+        return redirect('/employees');
     }
 
     /**

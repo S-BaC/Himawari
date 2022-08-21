@@ -9,7 +9,7 @@
     @include('detailsNav', ['selectedDetails' => 'd-appointments'])
 
     <div id="appointment-details" class="mt-6 ml-80">
-{{--         
+        
         <h3 class="font-thin text-5xl mb-5">
             Appointments
             <span class="text-lg font-semibold  text-gray-600">
@@ -47,8 +47,7 @@
 
         <div class="w-96 m-auto my-10">
             {{$appointments->links()}}
-        </div> --}}
-        <div id="appointment-form">@include('forms.appointment', ['mode' => 'add'])</div>
+        </div>
     </div>
 </div>
 
