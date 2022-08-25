@@ -5,14 +5,16 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DetailsController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\FinancesController;
-use App\Http\Controllers\LoginController;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\MessagesController;
 use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\StockController;
+use App\Http\Middleware\Locale;
 use Egulias\EmailValidator\Result\Reason\DetailedReason;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Session;
 
 Auth::routes();
 
@@ -59,11 +61,20 @@ Route::group(['middleware' => ['auth']], function () {
 
 });
 
+Route::get('/login/{locale}', [LoginController::class, 'locale']);
 
-Route::post('/authLogin', [LoginController::class, 'signin']);
-Route::get('login', [LoginController::class, 'show'])->name('login');
+// Route::get('/login/{locale}', [LoginController::class, 'locale']);
+
+Route::get('/lang/{locale}', function ($locale) {
+
+    session(['locale' => $locale]);
+    session()->save();
+
+    return redirect('/');
+});
 
 
-Auth::routes();
 
-Route::get('/home', [DashboardController::class, 'index'])->name('home');
+// Route::post('/authLogin', [LoginController::class, 'signin']);
+// Route::get('login', [LoginController::class, 'show'])->name('login');
+// Route::get('/home', [DashboardController::class, 'index'])->name('home');
