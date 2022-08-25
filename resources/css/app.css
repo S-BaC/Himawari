@@ -14,6 +14,10 @@ body{
     border-bottom: 3px solid #EC7F24;
 }
 
+.hover-selected-tab:hover {
+    color: #EC7F24;
+}
+
 .selected-details {
     background-color: #aaa !important;
 }

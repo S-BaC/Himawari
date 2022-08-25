@@ -11,7 +11,7 @@
 
             <div>
                 <h3 class="font-thin text-5xl mb-10 flex items-end gap-5">
-                    Rooms
+                    {{__("Rooms")}}
                     <span id="" class="add-room text-lg font-semibold cursor-pointer text-gray-600">
                         <img class="w-8" src="{{ URL::asset('/img/icons/add.svg') }}" alt="">
                     </span>
@@ -22,19 +22,19 @@
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
                                 <th scope="col" class="py-3 px-6">
-                                    Name
+                                    {{__("Name")}}
                                 </th>
                                 <th scope="col" class="py-3 px-6">
-                                    Beds
+                                    {{__("Beds")}}
                                 </th>
                                 <th scope="col" class="py-3 px-6">
-                                    Size
+                                    {{__("Size")}}
                                 </th>
                                 <th scope="col" class="py-3 px-6">
-                                    Condition
+                                    {{__("Condition")}}
                                 </th>
                                 <th scope="col" class="py-3 px-6">
-                                    Status
+                                    {{__("Status")}}
                                 </th>
                                 <th scope="col" class="py-3 px-6"></th>
                             </tr>
@@ -56,26 +56,26 @@
                                     <td class="py-4 px-6">
                                         @switch($room['condition'])
                                             @case(1)
-                                                Very Poor
+                                                {{__("Very Poor")}}
                                                 @break
                                             @case(2)
-                                                Poor
+                                                {{__("Poor")}}
                                                 @break
                                             @case(3)
-                                                Normal
+                                                {{__("Normal")}}
                                                 @break
                                             @case(4)
-                                                Good
+                                                {{__("Good")}}
                                                 @break
                                             @case(5)
-                                                Very Good
+                                                {{__("Very Good")}}
                                         @endswitch
                                     </td>
                                     <td class="py-4 px-6">
                                         @if($room['is_vacant'])
-                                            Vacant
+                                            {{__("Vacant")}}
                                         @else
-                                            Occupied
+                                            {{__("Occupied")}}
                                         @endif
                                     </td>
                                     <td class="py-1 px-6 flex justify-between">

@@ -1,9 +1,19 @@
 @extends('layouts.baseLayout')
 
 @section('login')
+
         <div class="container w-1/3 mt-10 m-auto">
-            <p class="text-3xl font-weight-thin mb-5"> Registration Demo </p>
-            <p class="mb-10"> (No email verification necessary.) </p>
+            <div class="flex items-center mb-10">
+                <img class="w-8 h-8 border-gray-900 border p-1" style="border-radius:50%;" src="{{ URL::asset('/img/icons/languages.svg') }}" alt="icon" onclick="toggleLangs()"/>
+                <div id="languages" class="flex gap-3 text-gray-700 mx-5 font-semibold">
+                    <a href="/lang/en" class="hover-selected-tab text-sm">EN</a>
+                    <a href="/lang/jp" class="hover-selected-tab text-sm">JP</a>
+                    <a href="/lang/mm" class="hover-selected-tab text-sm">MM</a>
+                </div>
+            </div>
+
+            <p class="text-3xl font-weight-thin mb-5"> {{__("Registration Demo")}} </p>
+            <p class="mb-10"> ({{__("No email verification necessary.")}}) </p>
 
             <form method="POST" action="{{ route('register') }}">
                 @csrf
@@ -57,13 +67,18 @@
                     </div>
                 </div>
 
-                <div class="row mb-0">
-                    <div class="col-md-6 offset-md-4">
-                        <button type="submit" class="btn btn-primary">
-                            {{ __('Register') }}
-                        </button>
-                    </div>
+                <div class="w-full mt-5 flex gap-3 justify-end">
+                    <a href="{{ route('login') }}"
+                        class="cursor-pointer text-white bg-[#3b5998] hover:bg-[#3b5998]/90 font-medium rounded-lg text-sm px-5 py-2.5 text-center mb-6">
+                        {{__('Log In')}}
+                        
+                    </a>
+                    <button type="submit"
+                        class="cursor-pointer text-white bg-[#D57538] hover:bg-[#D57538]/90 font-medium rounded-lg text-sm px-5 py-2.5 text-center mb-6">
+                        {{__('Register')}}
+                </button>
                 </div>
+            
             </form>
     </div>
 @endsection

@@ -10,7 +10,7 @@
         <div id="employee-list" class="mt-3 ml-80">
 
             <h3 class="font-thin text-5xl mb-10 flex items-end gap-5">
-                Employees
+                {{__("Employees")}}
                 <span id="" class="add-emp text-lg font-semibold cursor-pointer text-gray-600">
                     <img class="w-8" src="{{URL::asset('/img/icons/add.svg')}}" alt="">
                 </span>
@@ -21,19 +21,19 @@
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col" class="py-3 px-6">
-                                Name
+                                {{__("Name")}}
                             </th>
                             <th scope="col" class="py-3 px-6">
-                                Department
+                                {{__("Department")}}
                             </th>
                             <th scope="col" class="py-3 px-6">
-                                Role
+                                {{__("Role")}}
                             </th>
                             <th scope="col" class="py-3 px-6">
-                                Age
+                                {{__("Age")}}
                             </th>
                             <th scope="col" class="py-3 px-6">
-                                Phone
+                                {{__("Phone")}}
                             </th>
                             <th scope="col" class="py-3 px-6">
                                 

@@ -11,7 +11,7 @@
 
             <div>
                 <h3 class="font-thin text-5xl mb-10 flex items-end gap-5">
-                    Stocks
+                    {{__("Stocks")}}
                     <span id="" class="add-stock text-lg font-semibold cursor-pointer text-gray-600">
                         <img class="w-8" src="{{ URL::asset('/img/icons/add.svg') }}" alt="">
                     </span>
@@ -22,16 +22,16 @@
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
                                 <th scope="col" class="py-3 px-6">
-                                    Name
+                                    {{__("Name")}}
                                 </th>
                                 <th scope="col" class="py-3 px-6">
-                                    Category
+                                    {{__("Category")}}
                                 </th>
                                 <th scope="col" class="py-3 px-6">
-                                    Quantity
+                                    {{__("Quantity")}}
                                 </th>
                                 <th scope="col" class="py-3 px-6">
-                                    Unit
+                                    {{__("Unit")}}
                                 </th>
                                 <th scope="col" class="py-3 px-6"></th>
                             </tr>

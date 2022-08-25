@@ -11,11 +11,11 @@
     <div id="appointment-details" class="mt-6 ml-80">
         
         <h3 class="font-thin text-5xl mb-5">
-            Appointments
+            {{__("Appointments")}}
             <span class="text-lg font-semibold  text-gray-600">
                 <div class="add-app px-3 py-2  rounded-lg gap-3 flex my-5">
                     <img class="w-6" src="{{URL::asset('/img/icons/add.svg')}}" alt="">
-                    Add Appointments
+                    {{__("Add Appointments")}}
                 </div> 
             </span>
         </h3>

@@ -11,7 +11,7 @@
 
             <div>
                 <h3 class="font-thin text-5xl mb-10 flex items-end gap-5">
-                    Messages
+                    {{__("Messages")}}
                 </h3>
 
                 <div class="relative shadow-md sm:rounded-lg -z-10">
@@ -19,16 +19,16 @@
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
                                 <th scope="col" class="py-3 px-6">
-                                    Sender
+                                    {{__("Sender")}}
                                 </th>
                                 <th scope="col" class="py-3 px-6">
-                                    Date
+                                    {{__("Date")}}
                                 </th>
                                 <th scope="col" class="py-3 px-6">
-                                    Title
+                                    {{__("Title")}}
                                 </th>
                                 <th scope="col" class="py-3 px-6">
-                                    Content
+                                    {{__("Content")}}
                                 </th>
                                 <th scope="col" class="py-3 px-6"></th>
                             </tr>
@@ -74,7 +74,6 @@
         </div>
 
         <div id="employee-form" class="hidden ml-80 mt-3">@include('forms.employee', ['mode' => 'add'])</div>
-        {{-- <div id="employee-form-update" class="hidden ml-80 mt-3">@include('forms.employee', ['mode' => 'update', 'services' => $messageloyees, 'id' => currentId()])</div> --}}
 
     </div>
 
