@@ -7,6 +7,7 @@
     @vite('resources/css/app.css')
 </head>
 <body>
+    @yield('login')
     @yield('loginForm')
     @yield('dashboard')
     @yield('details')

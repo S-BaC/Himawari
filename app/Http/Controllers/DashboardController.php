@@ -23,9 +23,9 @@ class DashboardController extends Controller
             "vacantRooms" => Room::where('is_vacant', true)->count('id'),
             "inpatients" => Hospitalization::count('id'),
 
-            "doctors" => Employee::whereIn('role_id', [2, 3, 4, 8])->count('id'), // Should be only one id, as it's one role.
-            "nurses" => Employee::whereIn('role_id', [1, 5])->count('id'),
-            "other" => Employee::whereNotIn('role_id', [1, 2, 3, 4, 5, 8])->count('id'), // To use whereNotIn.
+            "doctors" => Employee::whereIn('role_id', [3, 5])->count('id'), // Should be only one id, as it's one role.
+            "nurses" => Employee::whereIn('role_id', [4])->count('id'),
+            "other" => Employee::whereNotIn('role_id', [3, 4, 5])->count('id'), // To use whereNotIn.
 
             "daysPharma" => 15, // Yet to include daily usage.
             "daysOther" => 15,
