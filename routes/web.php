@@ -47,7 +47,9 @@ Route::group(['middleware' => ['auth']], function () {
     
     Route::post('/details/add', [DetailsController::class, 'store']);
     
-    Route::post('/details/edit', [DetailsController::class, 'edit']);
+    Route::get('/details/edit/{id}', [DetailsController::class, 'edit']);
+
+    Route::post('/details/update/{id}', [DetailsController::class, 'update']);
     
     Route::get('/details/destroy/{id}', [DetailsController::class, 'destroy']);
     
@@ -62,8 +64,6 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
 Route::get('/login/{locale}', [LoginController::class, 'locale']);
-
-// Route::get('/login/{locale}', [LoginController::class, 'locale']);
 
 Route::get('/lang/{locale}', function ($locale) {
 

@@ -36,7 +36,7 @@
                                 <th scope="col" class="py-3 px-6">
                                     {{__("Status")}}
                                 </th>
-                                <th scope="col" class="py-3 px-6"></th>
+                                {{-- <th scope="col" class="py-3 px-6"></th> --}}
                             </tr>
                         </thead>
                         <tbody>
@@ -78,7 +78,7 @@
                                             {{__("Occupied")}}
                                         @endif
                                     </td>
-                                    <td class="py-1 px-6 flex justify-between">
+                                    {{-- <td class="py-1 px-6 flex justify-between">
                                         <a href="#"
                                             class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
                                             <img class="w-6" src="{{ URL::asset('/img/icons/info.svg') }}"
@@ -97,7 +97,7 @@
                                                 alt="" />
 
                                         </a>
-                                    </td>
+                                    </td> --}}
 
                                 </tr>
                             @endforeach
