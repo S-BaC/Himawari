@@ -12,7 +12,6 @@
     @yield('dashboard')
     @yield('details')
     @yield('employees')
-    @yield('employees_edit')
     @yield('services')
     @yield('finances')
     @yield('settings')

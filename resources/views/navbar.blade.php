@@ -1,7 +1,7 @@
-<div class="flex justify-between p-5 items-center mx-10 fixed w-full pr-20 bg-special-05">
-    <div class="logo h-30">
+<div class="flex justify-between p-5 items-center mx-10 fixed w-full pr-20 bg-special-05 z-10">
+    <a href="/" class="logo h-30">
         <img class='w-auto h-20' src="{{ URL::asset('/img/logo.png') }}" alt="Logo">
-    </div>
+    </a>
 
     <div class="nav-container flex gap-16">
         <div id="n-dashboard" class="nav-element flex gap-2 items-center cursor-pointer">
@@ -24,18 +24,14 @@
 
         <div class="flex items-center">
             <img class="w-8 h-8 border-gray-900 border p-1" style="border-radius:50%;" src="{{ URL::asset('/img/icons/languages.svg') }}" alt="icon" onclick="toggleLangs()"/>
-            <div id="languages" class="flex gap-3 text-gray-700 mx-5 font-semibold">
-                <a href="/lang/en" class="hover-selected-tab text-sm">EN</a>
-                <a href="/lang/jp" class="hover-selected-tab text-sm">JP</a>
-                <a href="/lang/mm" class="hover-selected-tab text-sm">MM</a>
-            </div>
+            @include('layouts.languages')
         </div>
 
         <div>
             <img class="w-8 border-gray-900 border p-1" style="border-radius:50%;"
                 src="{{ URL::asset('/img/icons/logout.svg') }}" alt="Log Out"
                 onclick="document.getElementById('logout-form').submit();">
-            <form id="logout-form" class="hidden" action="{{ route('logout') }}" method="POST" class="d-none">
+            <form id="logout-form" class="hidden" action="{{ route('logout') }}" method="GET" class="d-none">
                 @csrf
             </form>
         </div>

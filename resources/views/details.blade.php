@@ -24,9 +24,9 @@
                 <li class="font-semibold text-xl list-disc flex gap-5 items-end"> 
                     Dr. {{$app['doctor']}} on {{$app['department']}} 
                     <span class="text-base flex gap-3 text-gray-600">
-                        <div class="edit-app">
+                        <a href="/details/edit/{{$app['id']}}" class="edit-app">
                             <img class="w-6" src="{{URL::asset('/img/icons/edit.svg')}}" alt=""/>
-                        </div>
+                        </a>
                         <a href="/details/destroy/{{$app['id']}}" class="delete-app">
                             <img class="w-6" src="{{URL::asset('/img/icons/delete.svg')}}" alt=""/>
                         </a>
@@ -35,9 +35,9 @@
                 <p class="font-light italic"> 
                     {{$app['date_time']}}, 
                     @if(isset($app['duration_minutes']))
-                        Took {{$app['duration_minutes']}} minutes.
+                        Took {{$app['duration_minutes']}} minute{{$app['duration_minutes'] > 1 ? 's' : ''}}.
                     @else
-                        Expected to take {{$app['expected']}} minutes.
+                        Expected to take {{$app['expected_minutes']}} minute{{$app['expected_minutes'] > 1 ? 's' : ''}}.
                     @endif
                 </p>
                 <p class="mb-5"> {{$app['description']}} </p>
@@ -51,7 +51,7 @@
         </div>
     </div>
     
-    <div id="appointment-form" class="hidden ml-80 mt-6">@include('forms.appointment', ['mode' => 'add'])</div>
+    <div id="appointment-form" class="hidden ml-80 mt-6">@include('forms.appointment')</div>
     
 </div>
 

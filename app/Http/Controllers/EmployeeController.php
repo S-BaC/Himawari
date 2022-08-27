@@ -98,7 +98,7 @@ class EmployeeController extends Controller
     public function edit($id)
     {
         $employee =  (Employee::where('id', $id)->get([
-            'id', 'name', 'picture', 'role_id', 'department_id', 'age', 'phone'
+            'id', 'name', 'picture', 'role_id', 'department_id', 'age', 'phone','email'
         ]))[0];
 
         $employee['role'] = (Role::where('id', $employee['role_id'])->get('name'))[0]['name'];
@@ -124,9 +124,10 @@ class EmployeeController extends Controller
         $picture = ($request->file('picture') !== null) ? $request->file('picture')->store('employee_pictures') : null;
         $cv = ($request->file('cv') !== null) ? $request->file('cv')->store('employee_cvs') : null;
 
+
         DB::table('employees')
             ->where('id', $id)
-            ->insert([
+            ->update([
                 'name' => $request->name,
                 'picture' => $picture,
                 'date_of_birth' => date("Y-m-d",strtotime($request->date_of_birth)),
