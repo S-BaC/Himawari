@@ -11,7 +11,10 @@
     "Admin Login" : "管理者ログイン",
     "Log In" : "ログインする",
     "Demo Registration Here." : "デモ登録する",
-    
+
+    "Details not valid": "詳細が無効です.",
+    "Registered Successfully": "正常に登録",
+
     "Dashboard": "ダッシュボード",
     "Details": "詳細",
     "Settings": "設定",
@@ -55,5 +58,7 @@
     "Phone":"電話",
     "Category":"種類",
     "Quantity":"量",
-    "Unit":"ユニット"
+    "Unit":"ユニット",
+
+    "Under Development": "開発中"
 }

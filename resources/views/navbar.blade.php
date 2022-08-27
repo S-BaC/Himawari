@@ -31,7 +31,7 @@
             <img class="w-8 border-gray-900 border p-1" style="border-radius:50%;"
                 src="{{ URL::asset('/img/icons/logout.svg') }}" alt="Log Out"
                 onclick="document.getElementById('logout-form').submit();">
-            <form id="logout-form" class="hidden" action="{{ route('logout') }}" method="POST" class="d-none">
+            <form id="logout-form" class="hidden" action="{{ route('logout') }}" method="GET" class="d-none">
                 @csrf
             </form>
         </div>

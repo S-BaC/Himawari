@@ -37,9 +37,4 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-
-    public function locale($locale) {
-        session()->put("locale", $locale);
-        return redirect()->back();
-    }
 }

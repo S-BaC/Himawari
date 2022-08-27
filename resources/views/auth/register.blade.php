@@ -13,7 +13,7 @@
             <p class="text-3xl font-weight-thin mb-5"> {{__("Registration Demo")}} </p>
             <p class="mb-10"> ({{__("No email verification necessary.")}}) </p>
 
-            <form method="POST" action="{{ route('register') }}">
+            <form method="POST" action="{{ route('validate_registration') }}">
                 @csrf
                 <div class="row mb-3">
                     <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
@@ -33,7 +33,7 @@
                     <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
 
                     <div class="col-md-6">
-                        <input id="email" type="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-300 focus:border-orange-300 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-300 dark:focus:border-orange-300 @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                        <input id="email" type="email" class="text-black bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-300 focus:border-orange-300 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-300 dark:focus:border-orange-300 @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" autocomplete="email">
 
                         @error('email')
                             <span class="invalid-feedback" role="alert">
@@ -47,7 +47,7 @@
                     <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
 
                     <div class="col-md-6">
-                        <input id="password" type="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-300 focus:border-orange-300 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-300 dark:focus:border-orange-300 @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                        <input id="password" type="password" class="text-black bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-300 focus:border-orange-300 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-300 dark:focus:border-orange-300 @error('password') is-invalid @enderror" name="password" autocomplete="new-password">
 
                         @error('password')
                             <span class="invalid-feedback" role="alert">
@@ -61,8 +61,14 @@
                     <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
 
                     <div class="col-md-6">
-                        <input id="password-confirm" type="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-300 focus:border-orange-300 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-300 dark:focus:border-orange-300" name="password_confirmation" required autocomplete="new-password">
+                        <input id="password-confirm" type="password" class="text-black bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-300 focus:border-orange-300 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-300 dark:focus:border-orange-300" name="password_confirmation" autocomplete="new-password">
                     </div>
+
+                    @error('password_confirmation')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                 </div>
 
                 <div class="w-full mt-5 flex gap-3 justify-end">
