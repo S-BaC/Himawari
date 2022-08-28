@@ -30,7 +30,7 @@
                                 <th scope="col" class="py-3 px-6">
                                     {{__("Content")}}
                                 </th>
-                                <th scope="col" class="py-3 px-6"></th>
+                                {{-- <th scope="col" class="py-3 px-6"></th> --}}
                             </tr>
                         </thead>
                         <tbody>
@@ -50,13 +50,13 @@
                                     <td class="py-4 px-6">
                                         {{ $message['content'] }}
                                     </td>
-                                    <td class="py-1 px-6 flex justify-between">
+                                    {{-- <td class="py-1 px-6 flex justify-between">
                                         <a href="#"
                                             class="cursor-pointer font-medium text-blue-600 dark:text-blue-500 hover:underline">
                                             <img class="w-10" src="{{ URL::asset('/img/icons/info.svg') }}"
                                                 alt="" />
                                         </a>
-                                    </td>
+                                    </td> --}}
                                 </tr>
                             @endforeach
                         </tbody>
@@ -73,17 +73,8 @@
 
         </div>
 
-        <div id="employee-form" class="hidden ml-80 mt-3">@include('forms.employee', ['mode' => 'add'])</div>
 
     </div>
 
-    <script>
-        let empList = document.querySelector('#message-list');
-        let empForm = document.querySelector('#employee-form');
-        let empUpdate = document.querySelector('#employee-form-update');
-        document.querySelector('#message-list .add-room').addEventListener('click', e => {
-            empList.style.display = 'none';
-            empForm.style.display = 'block';
-        });
-    </script>
+
 @endsection

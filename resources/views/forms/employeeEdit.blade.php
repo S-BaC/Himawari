@@ -3,7 +3,7 @@
 @section('details')
     @include('navbar', ['selectedTab' => 'n-details'])
 
-    <div class="mx-10 mt-6 ml-80">
+    <div class="mx-10 mt-24 lg:mt-6 lg:ml-80">
 
         @include('detailsNav', ['selectedDetails' => 'd-employees'])
 

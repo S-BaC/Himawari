@@ -16,7 +16,8 @@ return new class extends Migration
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('gender');
+            $table->unsignedBigInteger('gender');
+            //$table->foreign('gender')->references('id')->on('genders')->onDelete('cascade');
             $table->string('email')->unique()->nullable();
             $table->string('phone');
             $table->unsignedBigInteger('department_id');
@@ -30,6 +31,12 @@ return new class extends Migration
             $table->integer('age');
             $table->string('cv')->nullable();
             $table->string('picture')->nullable();
+            $table->timestamps();
+        });
+
+        Schema::create('genders', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
             $table->timestamps();
         });
 

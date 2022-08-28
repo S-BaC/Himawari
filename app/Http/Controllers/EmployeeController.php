@@ -42,7 +42,7 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        //
+        return view('forms.employee');
     }
 
     /**
@@ -96,6 +96,9 @@ class EmployeeController extends Controller
 
         $data = Employee::find($id);
         $data['folder_path'] = self::FOLDER;
+
+        $data['role'] = (Role::where('id', $data['role_id'])->get('name'))[0]['name'];
+        $data['department'] = (Department::where('id', $data['department_id'])->get('name'))[0]['name'];
 
         return view('employeeDetails', ['data' => $data]);
     }

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->index('department_id')->unsigned(); 
             $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
             $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
+            $table->foreign('gender')->references('id')->on('genders')->onDelete('cascade');
         });
 
         Schema::table('departments', function ($table) {

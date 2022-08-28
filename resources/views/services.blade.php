@@ -115,18 +115,8 @@
 
         </div>
 
-        <div id="employee-form" class="hidden ml-80 mt-3">@include('forms.employee', ['mode' => 'add'])</div>
         {{-- <div id="employee-form-update" class="hidden ml-80 mt-3">@include('forms.employee', ['mode' => 'update', 'services' => $roomloyees, 'id' => currentId()])</div> --}}
 
     </div>
 
-    <script>
-        let empList = document.querySelector('#service-list');
-        let empForm = document.querySelector('#employee-form');
-        let empUpdate = document.querySelector('#employee-form-update');
-        document.querySelector('#service-list .add-room').addEventListener('click', e => {
-            empList.style.display = 'none';
-            empForm.style.display = 'block';
-        });
-    </script>
 @endsection

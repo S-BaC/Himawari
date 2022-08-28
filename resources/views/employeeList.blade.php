@@ -15,13 +15,13 @@
 
             <h3 class="font-thin text-5xl mb-10 flex items-end gap-5">
                 {{ __('Employees') }}
-                <span id="" class="add-emp text-lg font-semibold cursor-pointer text-gray-600">
+                <a href="/employees/create" class="add-emp text-lg font-semibold cursor-pointer text-gray-600">
                     <img class="w-8" src="{{ URL::asset('/img/icons/add.svg') }}" alt="">
-                </span>
+                </a>
             </h3>
 
             <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
-                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                <table class="text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col" class="py-3 px-6">
@@ -40,7 +40,7 @@
                                 {{ __('Phone') }}
                             </th>
                             <th scope="col" class="py-3 px-6">
-
+                                 <p class="lg:hidden">More</p>
                             </th>
                         </tr>
                     </thead>
@@ -64,22 +64,22 @@
                                 <td class="py-4 px-6">
                                     {{ $emp['phone'] }}
                                 </td>
-                                <td class="py-1 px-6 flex justify-between">
+                                <td class="py-1 px-6 lg:flex justify-between">
                                     <a href="/employees/show/{{ $emp['id'] }}"
-                                        class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                        class="font-medium flex gap-3  dark:text-blue-500 hover:underline">
                                         <img class="w-6" src="{{ URL::asset('/img/icons/info.svg') }}" alt="" />
-
+                                        <p class="lg:hidden">Info</p>
                                     </a>
                                     <a href="/employees/edit/{{ $emp['id'] }}"
-                                        class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                        class="font-medium flex gap-3 dark:text-blue-500 hover:underline">
                                         <img class="w-6" src="{{ URL::asset('/img/icons/edit.svg') }}" alt="" />
-
+                                        <p class="lg:hidden">Edit</p>
                                     </a>
                                     <a href="/employees/destroy/{{ $emp['id'] }}"
-                                        class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                        class="font-medium flex gap-3  dark:text-blue-500 hover:underline">
                                         <img class="w-6" src="{{ URL::asset('/img/icons/delete.svg') }}"
                                             alt="" />
-
+                                            <p class="lg:hidden">Delete</p>
                                     </a>
                                 </td>
 
@@ -96,17 +96,6 @@
 
         </div>
 
-        <div id="employee-form" class="hidden ml-80 mt-3">@include('forms.employee', ['mode' => 'add'])</div>
-
     </div>
 
-    <script>
-        let empList = document.querySelector('#employee-list');
-        let empForm = document.querySelector('#employee-form');
-        let empUpdate = document.querySelector('#employee-form-update');
-        document.querySelector('#employee-list .add-emp').addEventListener('click', e => {
-            empList.style.display = 'none';
-            empForm.style.display = 'block';
-        });
-    </script>
 @endsection
