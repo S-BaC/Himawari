@@ -1,6 +1,6 @@
 
 
-<form class="w-2/3 m-auto" method="POST" action="/employees/create">
+<form class="w-2/3 m-auto" method="POST" action="/employees/add" enctype="multipart/form-data">
 
   @csrf
 

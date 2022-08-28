@@ -7,7 +7,8 @@ use App\Models\Employee;
 use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use App\Helpers;
+use Helpers as GlobalHelpers;
 
 class EmployeeController extends Controller
 {
@@ -50,21 +51,52 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'name' => 'required',
-        ]);
 
-        
-        $picture = ($request->file('picture') !== null) ? $request->file('picture')->store('employee_pictures') : null;
-        $cv = ($request->file('cv') !== null) ? $request->file('cv')->store('employee_cvs') : null;
+        // $picFile = $request->file('picture');
+        // $cvFile = $request->file('cv');
+
+        // // $request->picFile = $picFile;
+        // // $request->cvFile = $cvFile;
+
+        // if(isset($picFile)){
+        //     $request->validate([
+        //         'picture' => 'mimes:jpg,png,svg|max:2048',
+        //     ]);
+    
+        //     $picFileName = time().'.'.$picFile->extension();
+        //     $picFile->move(public_path('storage/employee_data'), $picFileName);
+        // } else {
+        //     $picFileName = null;
+        // }
+
+        // if(isset($cvFile)){
+        //     $request->validate([
+        //         'cv' => 'mimes:pdf,docx,txt|max:2048'
+        //     ]);
+    
+        //     $cvFileName = time().'.'.$cvFile->extension();
+        //     $cvFile->move(public_path('storage/employee_data'), $cvFileName);
+        // } else {
+        //     $cvFileName = null;
+        // }
+
+        $request->validate([
+            'picture' => 'mimes:jpg,png,svg|max:2048',
+            'cv' => 'mimes:pdf,docx,txt|max:2048',
+        ]);
+        $picFile = $request->file('picture');
+        $cvFile = $request->file('cv');
+
+        $picFileName = GlobalHelpers::fileUploader($picFile, 'employee_data');
+        $cvFileName = GlobalHelpers::fileUploader($cvFile, 'employee_data');
 
         DB::table('employees')
             ->insert([
                 'name' => $request->name,
-                'picture' => $picture,
+                'picture' => $picFileName,
                 'date_of_birth' => date("Y-m-d",strtotime($request->date_of_birth)),
                 'gender' => $request->gender,
-                'cv' => $cv,
+                'cv' => $cvFileName,
                 'email' => $request->email,
                 'phone' => $request->phone,
                 'department_id' => $request->department,
@@ -75,7 +107,7 @@ class EmployeeController extends Controller
                 'experience' => date("Y") - date("Y", strtotime($request->start_of_employment)),
             ]);
 
-        return redirect('/employees');
+        return redirect('/employees')->with('msg', 'Employee Info was Successfully Added');
     }
 
     /**
@@ -116,23 +148,26 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validated = $request->validate([
-            'name' => 'required',
+
+        $request->validate([
+            'picture' => 'mimes:jpg,png,svg|max:2048',
+            'cv' => 'mimes:pdf,docx,txt|max:2048',
         ]);
-
         
-        $picture = ($request->file('picture') !== null) ? $request->file('picture')->store('employee_pictures') : null;
-        $cv = ($request->file('cv') !== null) ? $request->file('cv')->store('employee_cvs') : null;
+        $picFile = $request->file('picture');
+        $cvFile = $request->file('cv');
 
+        $picFileName = GlobalHelpers::fileUploader($picFile, 'employee_data');
+        $cvFileName = GlobalHelpers::fileUploader($cvFile, 'employee_data');
 
         DB::table('employees')
             ->where('id', $id)
             ->update([
                 'name' => $request->name,
-                'picture' => $picture,
+                'picture' => $picFileName,
                 'date_of_birth' => date("Y-m-d",strtotime($request->date_of_birth)),
                 'gender' => $request->gender,
-                'cv' => $cv,
+                'cv' => $cvFileName,
                 'email' => $request->email,
                 'phone' => $request->phone,
                 'department_id' => $request->department,
@@ -143,7 +178,7 @@ class EmployeeController extends Controller
                 'experience' => date("Y") - date("Y", strtotime($request->start_of_employment)),
             ]);
 
-        return redirect('/employees');
+        return redirect('/employees')->with('msg', 'Employee Info was Successfully Updated');
     }
 
     /**
@@ -155,6 +190,6 @@ class EmployeeController extends Controller
     public function destroy($id)
     {
         Employee::find($id)->delete();
-        return redirect('/employees'); 
+        return redirect('/employees')->with('msg', 'Employee Info Deleted'); 
     }
 }

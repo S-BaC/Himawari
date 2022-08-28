@@ -1,7 +1,6 @@
 @extends('layouts.baseLayout')
 
 <div class="flex items-center mb-5 mt-5 w-1/4 m-auto">
-    <img class="w-8 h-8 border-gray-900 border p-1" style="border-radius:50%;" src="{{ URL::asset('/img/icons/languages.svg') }}" alt="icon" />
         @include('layouts.languages')
 </div>
 

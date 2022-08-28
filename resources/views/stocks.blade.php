@@ -7,7 +7,7 @@
 
         @include('detailsNav', ['selectedDetails' => 'd-stocks'])
 
-        <div id="stock-list" class="mt-3 ml-80">
+        <div id="stock-list" class="mt-20 mx-2 md:mt-6 md:ml-80">
 
             <div>
                 <h3 class="font-thin text-5xl mb-10 flex items-end gap-5">

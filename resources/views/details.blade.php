@@ -8,7 +8,7 @@
 
     @include('detailsNav', ['selectedDetails' => 'd-appointments'])
 
-    <div id="appointment-details" class="mt-6 ml-80">
+    <div id="appointment-details" class="mt-20 mx-2 md:mt-6 md:ml-80">
         
         <h3 class="font-thin text-5xl mb-5">
             {{__("Appointments")}}

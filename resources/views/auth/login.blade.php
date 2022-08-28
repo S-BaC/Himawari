@@ -2,7 +2,6 @@
 
 
 <div class="flex items-center w-1/3 m-auto mt-10">
-    <img class="w-8 h-8 border-gray-900 border p-1" style="border-radius:50%;" src="{{ URL::asset('/img/icons/languages.svg') }}" alt="icon" onclick="toggleLangs()"/>
     @include('layouts.languages')
 
 </div>

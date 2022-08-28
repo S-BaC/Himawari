@@ -7,7 +7,7 @@
 
         @include('detailsNav', ['selectedDetails' => 'd-employees'])
 
-<form class="w-2/3 m-auto" method="POST" action="/employees/update/{{$id}}">
+<form class="w-2/3 m-auto" method="POST" action="/employees/update/{{$id}}" enctype="multipart/form-data">
 
   @csrf
     @include('forms.employeeBase', ['employee' => $employee])

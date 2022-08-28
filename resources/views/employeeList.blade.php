@@ -7,12 +7,16 @@
 
         @include('detailsNav', ['selectedDetails' => 'd-employees'])
 
-        <div id="employee-list" class="mt-3 ml-80">
+        <div id="employee-list" class="mt-20 mx-2 md:mt-6 md:ml-80">
+
+            @if ($msg = Session::get('msg'))
+                <div class="w-full text-center">{{ $msg }}</div>
+            @endif
 
             <h3 class="font-thin text-5xl mb-10 flex items-end gap-5">
-                {{__("Employees")}}
+                {{ __('Employees') }}
                 <span id="" class="add-emp text-lg font-semibold cursor-pointer text-gray-600">
-                    <img class="w-8" src="{{URL::asset('/img/icons/add.svg')}}" alt="">
+                    <img class="w-8" src="{{ URL::asset('/img/icons/add.svg') }}" alt="">
                 </span>
             </h3>
 
@@ -21,22 +25,22 @@
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col" class="py-3 px-6">
-                                {{__("Name")}}
+                                {{ __('Name') }}
                             </th>
                             <th scope="col" class="py-3 px-6">
-                                {{__("Department")}}
+                                {{ __('Department') }}
                             </th>
                             <th scope="col" class="py-3 px-6">
-                                {{__("Role")}}
+                                {{ __('Role') }}
                             </th>
                             <th scope="col" class="py-3 px-6">
-                                {{__("Age")}}
+                                {{ __('Age') }}
                             </th>
                             <th scope="col" class="py-3 px-6">
-                                {{__("Phone")}}
+                                {{ __('Phone') }}
                             </th>
                             <th scope="col" class="py-3 px-6">
-                                
+
                             </th>
                         </tr>
                     </thead>
@@ -46,39 +50,38 @@
                                 class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                 <th scope="row"
                                     class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    {{$emp['name']}}
+                                    {{ $emp['name'] }}
                                 </th>
                                 <td class="py-4 px-6">
-                                    {{$emp['department']}}
+                                    {{ $emp['department'] }}
                                 </td>
                                 <td class="py-4 px-6">
-                                    {{$emp['role']}}
+                                    {{ $emp['role'] }}
                                 </td>
                                 <td class="py-4 px-6">
-                                    {{$emp['age']}}
+                                    {{ $emp['age'] }}
                                 </td>
                                 <td class="py-4 px-6">
-                                    {{$emp['phone']}}
+                                    {{ $emp['phone'] }}
                                 </td>
                                 <td class="py-1 px-6 flex justify-between">
-                                    <a 
-                                        class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                                        <img class="w-6" src="{{URL::asset('/img/icons/info.svg')}}" alt=""/>
-                                    
-                                    </a>
-                                    <a 
-                                        href="/employees/edit/{{$emp['id']}}"
-                                        class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                                        <img class="w-6" src="{{URL::asset('/img/icons/edit.svg')}}" alt=""/>
+                                    <a class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                        <img class="w-6" src="{{ URL::asset('/img/icons/info.svg') }}" alt="" />
 
                                     </a>
-                                    <a href="/employees/destroy/{{$emp['id']}}"
+                                    <a href="/employees/edit/{{ $emp['id'] }}"
                                         class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                                        <img class="w-6" src="{{URL::asset('/img/icons/delete.svg')}}" alt=""/>
+                                        <img class="w-6" src="{{ URL::asset('/img/icons/edit.svg') }}" alt="" />
+
+                                    </a>
+                                    <a href="/employees/destroy/{{ $emp['id'] }}"
+                                        class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                        <img class="w-6" src="{{ URL::asset('/img/icons/delete.svg') }}"
+                                            alt="" />
 
                                     </a>
                                 </td>
-                                
+
                             </tr>
                         @endforeach
                     </tbody>
@@ -104,6 +107,5 @@
             empList.style.display = 'none';
             empForm.style.display = 'block';
         });
-
     </script>
 @endsection
