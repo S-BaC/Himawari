@@ -36,7 +36,7 @@
                 </li>
                 <li id="n-details" class="nav-element flex gap-2 items-center cursor-pointer">
                     <img class="w-8 h-8" src="{{ URL::asset('/img/icons/database.svg') }}" alt="icon">
-                    <a href="/details">{{ __('Details') }}</a>
+                    <a href="/employees">{{ __('Details') }}</a>
                 </li>
                 <li id="n-settings" class="nav-element flex gap-2 items-center cursor-pointer">
                     <img class="w-8 h-8" src="{{ URL::asset('/img/icons/cog.svg') }}" alt="icon">

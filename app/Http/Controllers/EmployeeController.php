@@ -12,6 +12,8 @@ use Helpers as GlobalHelpers;
 
 class EmployeeController extends Controller
 {
+    const FOLDER = 'employee_data';
+
     /**
      * Display a listing of the resource.
      *
@@ -20,7 +22,7 @@ class EmployeeController extends Controller
     public function index()
     {
         $employees =  Employee::paginate(5,[
-            'id', 'name', 'picture', 'role_id', 'department_id', 'age', 'phone'
+            'id', 'name', 'role_id', 'department_id', 'age', 'phone'
         ]);
 
         for($i=0, $len=count($employees); $i<$len; $i++){
@@ -52,43 +54,16 @@ class EmployeeController extends Controller
     public function store(Request $request)
     {
 
-        // $picFile = $request->file('picture');
-        // $cvFile = $request->file('cv');
-
-        // // $request->picFile = $picFile;
-        // // $request->cvFile = $cvFile;
-
-        // if(isset($picFile)){
-        //     $request->validate([
-        //         'picture' => 'mimes:jpg,png,svg|max:2048',
-        //     ]);
-    
-        //     $picFileName = time().'.'.$picFile->extension();
-        //     $picFile->move(public_path('storage/employee_data'), $picFileName);
-        // } else {
-        //     $picFileName = null;
-        // }
-
-        // if(isset($cvFile)){
-        //     $request->validate([
-        //         'cv' => 'mimes:pdf,docx,txt|max:2048'
-        //     ]);
-    
-        //     $cvFileName = time().'.'.$cvFile->extension();
-        //     $cvFile->move(public_path('storage/employee_data'), $cvFileName);
-        // } else {
-        //     $cvFileName = null;
-        // }
-
         $request->validate([
             'picture' => 'mimes:jpg,png,svg|max:2048',
             'cv' => 'mimes:pdf,docx,txt|max:2048',
         ]);
+
         $picFile = $request->file('picture');
         $cvFile = $request->file('cv');
 
-        $picFileName = GlobalHelpers::fileUploader($picFile, 'employee_data');
-        $cvFileName = GlobalHelpers::fileUploader($cvFile, 'employee_data');
+        $picFileName = GlobalHelpers::fileUploader($picFile, self::FOLDER);
+        $cvFileName = GlobalHelpers::fileUploader($cvFile, self::FOLDER);
 
         DB::table('employees')
             ->insert([
@@ -118,7 +93,11 @@ class EmployeeController extends Controller
      */
     public function show($id)
     {
-        //
+
+        $data = Employee::find($id);
+        $data['folder_path'] = self::FOLDER;
+
+        return view('employeeDetails', ['data' => $data]);
     }
 
     /**
@@ -157,8 +136,8 @@ class EmployeeController extends Controller
         $picFile = $request->file('picture');
         $cvFile = $request->file('cv');
 
-        $picFileName = GlobalHelpers::fileUploader($picFile, 'employee_data');
-        $cvFileName = GlobalHelpers::fileUploader($cvFile, 'employee_data');
+        $picFileName = GlobalHelpers::fileUploader($picFile, self::FOLDER);
+        $cvFileName = GlobalHelpers::fileUploader($cvFile, self::FOLDER);
 
         DB::table('employees')
             ->where('id', $id)
@@ -189,7 +168,21 @@ class EmployeeController extends Controller
      */
     public function destroy($id)
     {
+        $files = (Employee::where('id', $id)->get(['picture', 'cv']))[0];
+
+        if(isset($files->picture)){
+            $msgPic = unlink("storage/" . self::FOLDER . "/" . $files->picture) ? " Picture deleted." : " But picture not deleted.";
+        } else {
+            $msgPic = '';
+        }
+
+        if(isset($files->cv)){
+            $msgCV = unlink("storage/" . self::FOLDER . "/" . $files->cv) ? " CV deleted." : " But cv not deleted.";
+        } else {
+            $msgCV = '';
+        }
+
         Employee::find($id)->delete();
-        return redirect('/employees')->with('msg', 'Employee Info Deleted'); 
+        return redirect('/employees')->with('msg', 'Employee info deleted.' . $msgPic . $msgCV); 
     }
 }

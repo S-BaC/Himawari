@@ -14,8 +14,8 @@
             {{__("Appointments")}}
             <span class="text-lg font-semibold  text-gray-600">
                 <div class="add-app px-3 py-2  rounded-lg gap-3 flex my-5">
-                    <img class="w-6" src="{{URL::asset('/img/icons/add.svg')}}" alt="">
-                    {{__("Add Appointments")}}
+                    {{-- <img class="w-6" src="{{URL::asset('/img/icons/add.svg')}}" alt=""> --}}
+                    {{-- {{__("Add Appointments")}} --}}
                 </div> 
             </span>
         </h3>
@@ -24,12 +24,12 @@
                 <li class="font-semibold text-xl list-disc flex gap-5 items-end"> 
                     Dr. {{$app['doctor']}} on {{$app['department']}} 
                     <span class="text-base flex gap-3 text-gray-600">
-                        <a href="/details/edit/{{$app['id']}}" class="edit-app">
+                        {{-- <a href="/details/edit/{{$app['id']}}" class="edit-app">
                             <img class="w-6" src="{{URL::asset('/img/icons/edit.svg')}}" alt=""/>
                         </a>
                         <a href="/details/destroy/{{$app['id']}}" class="delete-app">
                             <img class="w-6" src="{{URL::asset('/img/icons/delete.svg')}}" alt=""/>
-                        </a>
+                        </a> --}}
                     </span>
                 </li>
                 <p class="font-light italic"> 

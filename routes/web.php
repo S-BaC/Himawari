@@ -53,6 +53,8 @@ Route::group(['middleware' => ['auth']], function () {
     
     Route::get('/details/destroy/{id}', [DetailsController::class, 'destroy']);
     
+    Route::get('/employees/show/{id}', [EmployeeController::class, 'show']);
+
     Route::post('/employees/add', [EmployeeController::class, 'store']);
     
     Route::get('/employees/edit/{id}', [EmployeeController::class, 'edit']);
