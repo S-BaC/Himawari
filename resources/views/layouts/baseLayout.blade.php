@@ -17,5 +17,6 @@
     @yield('settings')
     <script src="{{URL::asset('modules/flowbite/dist/flowbite.js')}}"></script>
     <script src="{{URL::asset('modules/flowbite/dist/datepicker.js')}}"></script>
+
 </body>
 </html>

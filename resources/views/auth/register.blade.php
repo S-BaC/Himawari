@@ -1,13 +1,26 @@
 @extends('layouts.baseLayout')
 
-<div class="flex items-center mb-5 mt-5 w-1/4 m-auto">
-        @include('layouts.languages')
-</div>
-
 @section('login')
 
-        <div class="container w-1/4 m-auto bg-[#D57538] pt-3 px-5 text-white">
-
+        <div class="container w-96 mt-5 m-auto bg-[#D57538] pt-3 px-5 text-white">
+            
+            <div class="flex items-center justify-end mb-5">
+                <a href="/lang/en" class="block py-2 px-4 text-sm hover:bg-orange-900 " role="menuitem">
+                    <div class="inline-flex items-center">
+                        English
+                    </div>
+                </a>
+                <a href="/lang/jp" class="block py-2 px-4 text-sm hover:bg-orange-900 " role="menuitem">
+                    <div class="inline-flex items-center">
+                        日本語
+                    </div>
+                </a>
+                <a href="/lang/mm" class="block py-2 px-4 text-sm hover:bg-orange-900 " role="menuitem">
+                    <div class="inline-flex items-center">
+                        ဗမာစာ
+                    </div>
+                </a>
+            </div>
 
             <p class="text-3xl font-weight-thin mb-5"> {{__("Registration Demo")}} </p>
             <p class="mb-10"> ({{__("No email verification necessary.")}}) </p>

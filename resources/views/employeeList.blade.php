@@ -13,15 +13,31 @@
                 <div class="w-full text-center">{{ $msg }}</div>
             @endif
 
-            <h3 class="font-thin text-5xl mb-10 flex items-end gap-5">
-                {{ __('Employees') }}
-                <a href="/employees/create" class="add-emp text-lg font-semibold cursor-pointer text-gray-600">
-                    <img class="w-8" src="{{ URL::asset('/img/icons/add.svg') }}" alt="">
-                </a>
-            </h3>
+            <div class="w-full lg:flex gap-10 items-center lg:justify-between">
+                <h3 class="font-thin text-5xl mb-10 flex items-end gap-5">
+                    {{ __('Employees') }}
+                    <a href="/employees/create" class="add-emp text-lg font-semibold cursor-pointer text-gray-600">
+                        <img class="w-8" src="{{ URL::asset('/img/icons/add.svg') }}" alt="">
+                    </a>
+                </h3>
+
+                <form class="lg:w-1/2" method="POST" action="/employees/query">
+                    @csrf
+                    <label for="default-search"
+                        class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">{{__("Search")}}</label>
+                    <div class="relative flex items-center">
+                        <input type="search"
+                            class="block p-2 w-full text-sm text-gray-900 border-0 border-b border-[#D57538] bg-special-05 focus:border-none focus:ring-0"
+                            placeholder="{{__("Employees by name.")}}" required name="name">
+                        <button type="submit"
+                            class="bg-special-05 border border-[#D57538] absolute right-2.5 bottom-1.5 hover:bg-[#D57538] hover:text-white font-medium rounded text-sm px-5 py-1">{{__("Search")}}</button>
+                    </div>
+                </form>
+
+            </div>
 
             <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
-                <table class="text-sm text-left text-gray-500 dark:text-gray-400">
+                <table class="text-sm text-left text-gray-500 dark:text-gray-400 lg:w-full">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col" class="py-3 px-6">
@@ -40,7 +56,7 @@
                                 {{ __('Phone') }}
                             </th>
                             <th scope="col" class="py-3 px-6">
-                                 <p class="lg:hidden">More</p>
+                                <p class="lg:hidden">More</p>
                             </th>
                         </tr>
                     </thead>
@@ -79,7 +95,7 @@
                                         class="font-medium flex gap-3  dark:text-blue-500 hover:underline">
                                         <img class="w-6" src="{{ URL::asset('/img/icons/delete.svg') }}"
                                             alt="" />
-                                            <p class="lg:hidden">Delete</p>
+                                        <p class="lg:hidden">Delete</p>
                                     </a>
                                 </td>
 
@@ -97,5 +113,4 @@
         </div>
 
     </div>
-
 @endsection

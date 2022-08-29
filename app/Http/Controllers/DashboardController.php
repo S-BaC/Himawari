@@ -7,6 +7,7 @@ use App\Models\Hospitalization;
 use App\Models\Message;
 use App\Models\Room;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
@@ -27,14 +28,15 @@ class DashboardController extends Controller
             "nurses" => Employee::whereIn('role_id', [4])->count('id'),
             "other" => Employee::whereNotIn('role_id', [3, 4, 5])->count('id'), // To use whereNotIn.
 
+            "emp_by_department" => Employee::groupBy('department_id')->select('department_id', DB::raw('count(id) as total'))->get(),
+            "emp_by_role" => Employee::groupBy('role_id')->select('role_id', DB::raw('count(id) as total'))->get(),
+
             "daysPharma" => 15, // Yet to include daily usage.
             "daysOther" => 15,
 
             "todayMessages" => Message::where('created_at', '>=', date('Y-m-d'))->get()
         ];
 
-
-        
         return view('/dashboard', ['data' => $dashboardData]);
     }
 

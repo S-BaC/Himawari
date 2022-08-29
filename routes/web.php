@@ -42,8 +42,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/messages', [MessagesController::class, 'index']);
     Route::get('/finances', [FinancesController::class, 'index']);
     
-    Route::get('/settings', function() {
-    });
+    Route::get('/settings', [DashboardController::class, 'index']);
     
     Route::post('/details/add', [DetailsController::class, 'store']);
     
@@ -53,6 +52,8 @@ Route::group(['middleware' => ['auth']], function () {
     
     Route::get('/details/destroy/{id}', [DetailsController::class, 'destroy']);
     
+    Route::post('/employees/query', [EmployeeController::class, 'query']);
+
     Route::get('/employees/show/{id}', [EmployeeController::class, 'show']);
 
     Route::get('/employees/create', [EmployeeController::class, 'create']);

@@ -8,7 +8,9 @@ use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Helpers;
+use App\Mail\TemplateNew;
 use Helpers as GlobalHelpers;
+use Illuminate\Support\Facades\Mail;
 
 class EmployeeController extends Controller
 {
@@ -94,6 +96,8 @@ class EmployeeController extends Controller
     public function show($id)
     {
 
+        // Mail::to("morganblackaoe318@gmail.com")->send(new TemplateNew());
+
         $data = Employee::find($id);
         $data['folder_path'] = self::FOLDER;
 
@@ -101,6 +105,29 @@ class EmployeeController extends Controller
         $data['department'] = (Department::where('id', $data['department_id'])->get('name'))[0]['name'];
 
         return view('employeeDetails', ['data' => $data]);
+    }
+
+    /**
+     * Query Employee List
+     *
+     * @param  String  $query
+     * @return \Illuminate\Http\Response
+     */
+    public function query(Request $request)
+    {
+
+
+        $query = $request->name;
+
+        $employees = Employee::where('name', 'like', "%$query%")->paginate(5, [
+        'id', 'name', 'role_id', 'department_id', 'age', 'phone'
+        ]);
+
+        for($i=0, $len=count($employees); $i<$len; $i++){
+            $employees[$i]['role'] = (Role::where('id', $employees[$i]['role_id'])->get('name'))[0]['name'];
+            $employees[$i]['department'] = (Department::where('id', $employees[$i]['department_id'])->get('name'))[0]['name'];
+        }
+        return view('employeeList', ['employees' => $employees]);
     }
 
     /**

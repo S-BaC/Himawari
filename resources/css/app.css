@@ -34,6 +34,10 @@ body{
     text-align: left;
 }
 
+.pieGraph {
+    display: flex;
+}
+
 /*For dashboard tabs*/
 .bg-special-01{ color:#fff; background-color: #D57538;}
 .bg-special-02{ color:#fff; background-color: #43AA8B;}
@@ -50,5 +54,17 @@ body{
     }
     .selected-details {
         @apply border-solid border-2 border-orange-500;
+    }
+    .graphs {
+        @apply flex;
+    }
+    .pie-graph {
+        @apply flex flex-col items-center;
+    }
+    .pie-graph text {
+        @apply bg-white;
+    }
+    .pie-graph button {
+        @apply bg-[#7D82B8] text-white rounded-lg px-3 py-2;
     }
 }
