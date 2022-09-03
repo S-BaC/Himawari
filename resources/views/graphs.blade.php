@@ -1,6 +1,8 @@
 <div class="
     m-auto
-    md:flex md:justify-evenly md:m-10
+    flex flex-col mb-5
+    md:mb-0 md:flex-row md:justify-evenly md:m-10
+
     graphs">
 
     <div class="pie-graph">
@@ -8,19 +10,30 @@
         <!-- Add 2 buttons -->
 
         <!-- Create a div where the graph will take place -->
-        <h3 id="pie-emp-title" class="mb-5 font-semibold"></h3>
+        <h3 id="pie-emp-title" class="mb-1 font-semibold flex items-center">
+            Employees: 
+            <select name="" id="pieChartCat" class="w-36 border-none bg-special-05" 
+            onchange="
+                let cat = document.getElementById('pieChartCat').value;
+                update(data[cat], cat)">
+                <option value="Roles">
+                    By Roles
+                </option>
+                <option value="Departments">
+                    By Departments
+                </option>
+            </select>
+        </h3>
         <div id="pieChartEmp"></div>
-        <div class="flex gap-3 mt-5">
-            <button onclick="update(dept_data, 'Departments')">By Department</button>
-            <button onclick="update(role_data, 'Roles')">By Role</button>
-        </div>
     </div>
 
-    <div class="bar-graph z-20">
-        <svg id="barChartApp" class="w-96 h-96"></svg>
+    <div class="bar-graph flex flex-col items-center hidden md:flex">
+        <h3 id="bar-app-title" class=" font-semibold">
+            Appointments by Day
+        </h3>
+        <svg id="barChartApp" class="w-full h-full"></svg>
     </div>
 
-    <rect class="bar" fill="#000" width="54" height="133.33333333333331" x="8" y="66.66666666666669"></rect>
 
 
 

@@ -1,23 +1,26 @@
 let names = {
-  "Departments": ['Neurology', 'Dermatology', 'General', 'Cardiology', 'Orthopedics'],
+  "Departments": ['Neuro.', 'Dermato.', 'Gen.', 'Cardio.', 'Ortho.'],
   "Roles": ['Office Staff', 'Intern', 'Specialist', 'Nurse', 'Fellow']
 }
-let dept_data = {};
-let role_data = {};
+
+let data = {
+  "Departments" : {},
+  "Roles": {}
+}
 
 emp_by_dept.forEach(ele => {
-  dept_data[ele['department_id']] = ele['total']
+  data["Departments"][ele['department_id']] = ele['total']
 })
 
 emp_by_role.forEach(ele => {
-  role_data[ele['role_id']] = ele['total']
+  data["Roles"][ele['role_id']] = ele['total']
 })
 
 
 // set the dimensions and margins of the graph
 let width = 250
     height = 250
-    margin = 10
+    margin = 5
 
 // The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.
 let radius = Math.min(width, height) / 2 - margin
@@ -40,9 +43,8 @@ let color = d3.scaleOrdinal()
 function update(data, title) {
 
   let arr = names[title];
-
-  d3.select('#pie-emp-title').text("Employees By " + title)
   d3.select('g').html("");
+
 
   // Compute the position of each group on the pie:
   let pie = d3.pie()
@@ -91,4 +93,4 @@ function update(data, title) {
 }
 
 // Initialize the plot with the first dataset
-update(role_data, "Roles")
+update(data["Roles"], "Roles")
