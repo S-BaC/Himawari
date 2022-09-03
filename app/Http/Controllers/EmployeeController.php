@@ -96,8 +96,6 @@ class EmployeeController extends Controller
     public function show($id)
     {
 
-        // Mail::to("morganblackaoe318@gmail.com")->send(new TemplateNew());
-
         $data = Employee::find($id);
         $data['folder_path'] = self::FOLDER;
 

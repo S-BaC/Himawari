@@ -84,6 +84,10 @@ Route::get('/register', [AuthController::class, 'register'])->name('register');
 
 Route::post('/validate_registration', [AuthController::class, 'validate_registration'])->name('validate_registration');
 
+Route::post('/confirm_registration', [AuthController::class, 'validate_registration_code'])->name('confirm_registration');
+
+Route::get('/registration_confirmation', function(){ return view('auth.registration_confirmation'); })->name('registration_confirmation');
+
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 

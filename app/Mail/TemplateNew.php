@@ -11,14 +11,16 @@ class TemplateNew extends Mailable
 {
     use Queueable, SerializesModels;
 
+    private $uuid;
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($uuid)
     {
-        //
+        $this->uuid = $uuid;
     }
 
     /**
@@ -28,6 +30,6 @@ class TemplateNew extends Mailable
      */
     public function build()
     {
-        return $this->view('TemplateNew');
+        return $this->view('TemplateNew', ['code' => $this->uuid]);
     }
 }

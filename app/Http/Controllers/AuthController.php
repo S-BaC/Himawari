@@ -2,15 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\TemplateNew;
 use Illuminate\Http\Request;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
 {
+    private static $UUID; // A New instance is created, so? A file?
+    private static $DATA;
+
+    function __construct()
+    {
+        if(!isset(self::$UUID)){
+            self::$UUID = fake()->uuid();
+        }
+    }
+
     function index(){
         return view('auth.login');
     }
@@ -41,15 +53,25 @@ class AuthController extends Controller
             'password_confirmation' => 'required_with:password|same:password'
         ]);
 
-        $data = $request->all();
+        self::$DATA = $request->all();
 
-        User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+        Mail::to(self::$DATA['email'])->send(new TemplateNew(self::$UUID));
 
-        return redirect('login')->with('msg', __('Registered Successfully'));
+        return redirect('registration_confirmation');
+    }
+
+    function validate_registration_code(Request $request){
+        dd(($request->all())['code'], self::$UUID);
+        if(($request->all())['code'] === self::$UUID){
+            User::create([
+                'name' => self::$DATA['name'],
+                'email' => $this->self::$DATA['email'],
+                'password' => Hash::make($this->self::$DATA['password']),
+            ]);
+            return redirect('login')->with('msg', __('Registered Successfully'));
+        }
+
+        return redirect('registration_confirmation')->with('msg', __('Incorrect Code. Please Enter Again.'));
 
     }
 

@@ -23,7 +23,7 @@
             </div>
 
             <p class="text-3xl font-weight-thin mb-5"> {{__("Registration Demo")}} </p>
-            <p class="mb-10"> ({{__("No email verification necessary.")}}) </p>
+            {{-- <p class="mb-10"> ({{__("No email verification necessary.")}}) </p> --}}
 
             <form method="POST" action="{{ route('validate_registration') }}">
                 @csrf
