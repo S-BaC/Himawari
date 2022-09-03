@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Appointment;
 use App\Models\Employee;
 use App\Models\Hospitalization;
 use App\Models\Message;
 use App\Models\Room;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
@@ -18,6 +20,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
+
         $dashboardData = [
 
             "totalRooms" => Room::count('id'),
@@ -34,8 +37,12 @@ class DashboardController extends Controller
             "daysPharma" => 15, // Yet to include daily usage.
             "daysOther" => 15,
 
-            "todayMessages" => Message::where('created_at', '>=', date('Y-m-d'))->get()
+            "todayMessages" => Message::where('created_at', '>=', date('Y-m-d'))->get(),
+
+
+            "appointments" => Appointment::where('date_time', '>=', date('Y-m-d', mktime(0,0,0, date('m') - 1, date('d'), date('Y'))))->groupBy('date_time')->select('date_time', DB::raw('count(id) as total'))->get()
         ];
+
 
         return view('/dashboard', ['data' => $dashboardData]);
     }

@@ -16,6 +16,14 @@
         </div>
     </div>
 
+    <div class="bar-graph z-20">
+        <svg id="barChartApp" class="w-96 h-96"></svg>
+    </div>
+
+    <rect class="bar" fill="#000" width="54" height="133.33333333333331" x="8" y="66.66666666666669"></rect>
+
+
+
     {{-- <img class="w-3/4 m-auto md:w-1/4" src="{{URL::asset('/img/dummy/graph2.png')}}" alt="">
     <img class="w-3/4 m-auto md:w-1/4" src="{{URL::asset('/img/dummy/graph3.png')}}" alt=""> --}}
 
@@ -29,6 +37,8 @@
     <script>
         let emp_by_dept = <?= json_encode($data['emp_by_department']) ?>;
         let emp_by_role = <?= json_encode($data['emp_by_role']) ?>;
+        let app_by_date = <?= json_encode($data['appointments']) ?>;
     </script>
-    <script src="{{ URL::asset('/js/graphVisualization.js') }}"></script>
+    <script src="{{ URL::asset('/js/graphs_pie.js') }}"></script>
+    <script src="{{ URL::asset('/js/graphs_bar.js') }}"></script>
 </div>

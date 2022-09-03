@@ -38,6 +38,10 @@ body{
     display: flex;
 }
 
+.bar {
+    fill: #000;
+}
+
 /*For dashboard tabs*/
 .bg-special-01{ color:#fff; background-color: #D57538;}
 .bg-special-02{ color:#fff; background-color: #43AA8B;}

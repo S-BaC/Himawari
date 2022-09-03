@@ -113,7 +113,7 @@ return new class extends Migration
 
         Schema::create('appointments', function (Blueprint $table) {
             $table->id();
-            $table->date('date_time');
+            $table->timestamp('date_time');
             $table->integer('expected_minutes');
             $table->integer('duration_minutes')->nullable();
             $table->string('description')->nullable();
