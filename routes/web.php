@@ -54,17 +54,19 @@ Route::group(['middleware' => ['auth']], function () {
     
     Route::post('/employees/query', [EmployeeController::class, 'query']);
 
-    Route::get('/employees/show/{id}', [EmployeeController::class, 'show']);
+    // Route::get('/employees/show/{id}', [EmployeeController::class, 'show']);
 
-    Route::get('/employees/create', [EmployeeController::class, 'create']);
+    // Route::get('/employees/create', [EmployeeController::class, 'create']);
 
-    Route::post('/employees/add', [EmployeeController::class, 'store']);
+    // Route::post('/employees/add', [EmployeeController::class, 'store']);
     
-    Route::get('/employees/edit/{id}', [EmployeeController::class, 'edit']);
+    // Route::get('/employees/edit/{id}', [EmployeeController::class, 'edit']);
     
-    Route::post('/employees/update/{id}', [EmployeeController::class, 'update']);
+    // Route::post('/employees/update/{id}', [EmployeeController::class, 'update']);
     
-    Route::get('/employees/destroy/{id}', [EmployeeController::class, 'destroy']);
+    // Route::get('/employees/destroy/{id}', [EmployeeController::class, 'destroy']);
+
+    Route::resource('/employees', EmployeeController::class);
 
 });
 
